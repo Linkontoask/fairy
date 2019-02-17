@@ -4,7 +4,7 @@ export default {
   longIn: function (user, pass, data, dataDetail) {
     // 登录
     try {
-      Vue.http.get('http://linkorg.club:8091/login/cellphone', {
+      Vue.http.get('/Node/login/cellphone', {
         params: {
           'phone': user,
           'password': pass
@@ -28,7 +28,7 @@ export default {
   },
   longIn1: function (user, pass) {
     // 登录
-    Vue.http.get('http://linkorg.club:8091/login/cellphone', {
+    Vue.http.get('/Node/login/cellphone', {
       params: {
         'phone': user,
         'password': pass
@@ -42,7 +42,7 @@ export default {
   },
   userDetail: function (uid, dataDetail) {
     // 用户详情
-    Vue.http.get('http://linkorg.club:8091/user/detail', {
+    Vue.http.get('/Node/user/detail', {
       params: {
         'uid': uid
       },
@@ -58,7 +58,7 @@ export default {
   },
   getUserInfos: function (uid, p) {
     // 获取用户信息 , 歌单，收藏，mv, dj 数量
-    Vue.http.get('http://linkorg.club:8091/user/playlist', {
+    Vue.http.get('/Node/user/playlist', {
       params: {
         'uid': uid
       },
@@ -88,7 +88,7 @@ export default {
   },
   updateLongIn: function () {
     // 刷新登录
-    Vue.http.get('http://linkorg.club:8091/login/refresh', {
+    Vue.http.get('/Node/login/refresh', {
       params: {
       },
       xhrFields: {
@@ -100,7 +100,7 @@ export default {
   },
   getPersonalFm: function (data) {
     // 获取个人FM
-    Vue.http.get('http://linkorg.club:8091/personal_fm', {
+    Vue.http.get('/Node/personal_fm', {
       params: {
       },
       xhrFields: {
@@ -122,7 +122,7 @@ export default {
   },
   getSuggest: function (key, type, limit, p) {
     // 获取个人FM
-    Vue.http.get('http://linkorg.club:8091/search/suggest', {
+    Vue.http.get('/Node/search/suggest', {
       params: {
         'keywords': key,
         'type': type,
@@ -147,7 +147,7 @@ export default {
   },
   getSearch: function (key, type, limit, result) {
     // 获取搜索结果
-    Vue.http.get('http://linkorg.club:8091/search', {
+    Vue.http.get('/Node/search', {
       params: {
         'keywords': key,
         'type': type,
@@ -206,7 +206,7 @@ export default {
   },
   dayRecommendList: function () {
     // 获取每日推荐歌单
-    Vue.http.get('http://linkorg.club:8091/recommend/resource', {
+    Vue.http.get('/Node/recommend/resource', {
       params: {
       },
       xhrFields: {
@@ -233,7 +233,7 @@ export default {
   },
   reCommendListSong: function (p, limit, offset) {
     // 获取用户推荐歌单 (需登录)
-    Vue.http.get('http://linkorg.club:8091/personalized', {
+    Vue.http.get('/Node/personalized', {
       params: {
       },
       xhrFields: {
@@ -256,7 +256,7 @@ export default {
   },
   latestMusic: function (p) {
     // 获取用户推荐音乐
-    Vue.http.get('http://linkorg.club:8091/personalized/newsong', {
+    Vue.http.get('/Node/personalized/newsong', {
       params: {
       },
       xhrFields: {
@@ -275,7 +275,7 @@ export default {
   },
   recommendedMV: function (p) {
     // 获取用户推荐音乐
-    Vue.http.get('http://linkorg.club:8091/personalized/mv', {
+    Vue.http.get('/Node/personalized/mv', {
       params: {
       },
       xhrFields: {
@@ -297,7 +297,7 @@ export default {
   },
   radioStation: function (p) {
     // 获取用户推荐电台
-    Vue.http.get('http://linkorg.club:8091/personalized/djprogram', {
+    Vue.http.get('/Node/personalized/djprogram', {
       params: {
       },
       xhrFields: {
@@ -316,7 +316,7 @@ export default {
   },
   SongsDetail: function (id) {
     // 获取歌曲详情
-    Vue.http.get('http://linkorg.club:8091/song/detail', {
+    Vue.http.get('/Node/song/detail', {
       params: {
         'ids': id
       },
@@ -330,7 +330,7 @@ export default {
   },
   Getartists: function (id, img) {
     // 获取歌手单曲
-    Vue.http.get('http://linkorg.club:8091/artists', {
+    Vue.http.get('/Node/artists', {
       params: {
         'id': id
       },
@@ -344,7 +344,7 @@ export default {
   },
   SongSrcDetail: function (id, p) {
     // 获取歌曲播放链接
-    Vue.http.get('http://linkorg.club:8091/music/url', {
+    Vue.http.get('/Node/music/url', {
       params: {
         'id': id
       },
@@ -358,7 +358,7 @@ export default {
   },
   SongLyc: function (id, p) {
     // 获取歌曲歌词
-    Vue.http.get('http://linkorg.club:8091/lyric', {
+    Vue.http.get('/Node/lyric', {
       params: {
         'id': id
       },
@@ -377,7 +377,7 @@ export default {
   },
   ListSongDetail: function (id, p, d) {
     // 获取歌单详情
-    Vue.http.get('http://linkorg.club:8091/playlist/detail', {
+    Vue.http.get('/Node/playlist/detail', {
       params: {
         'id': id
       },
@@ -385,31 +385,31 @@ export default {
         withCredentials: true
       }
     }).then((res) => {
-      // console.log(res.data)
+      console.log(res.data)
       d.push({
-        'img': res.data.result.coverImgUrl,
-        'userImg': res.data.result.creator.avatarUrl,
-        'description': res.data.result.description,
-        'name': res.data.result.name,
-        'tags': res.data.result.tags,
-        'userName': res.data.result.creator.nickname,
-        'createTime': res.data.result.createTime
+        'img': res.data.playlist['coverImgUrl'],
+        'userImg': res.data.playlist.creator.avatarUrl,
+        'description': res.data.playlist.description,
+        'name': res.data.playlist.name,
+        'tags': res.data.playlist.tags,
+        'userName': res.data.playlist.creator.nickname,
+        'createTime': res.data.playlist.createTime
       })
-      let c = res.data.result.tracks
+      let c = res.data.playlist.tracks
       for (let i = 0; i < c.length; i++) {
         p.push({
           'name': c[i].name,
-          'alias': c[i].alias,
-          'artists': c[i].artists[0].name,
+          'alias': c[i].alia,
+          'artists': c[i].al.name,
           'id': c[i].id,
-          'blurPicUrl': c[i].album.blurPicUrl
+          'blurPicUrl': c[i].al.picUrl
         })
       }
     })
   },
   getHomePageImg: function (d) {
     // 获取banner图
-    Vue.http.get('http://linkorg.club:8091/banner', {
+    Vue.http.get('/Node/banner', {
       params: {
       },
       xhrFields: {
@@ -495,7 +495,7 @@ export default {
   },
   getMv: function (data, limit, offset) {
     // 获取最新MV
-    Vue.http.get('http://linkorg.club:8091/mv/first', {
+    Vue.http.get('/Node/mv/first', {
       params: {
         'limit': limit,
         'offset': offset
@@ -519,7 +519,7 @@ export default {
   },
   recommenMv: function (data, limit, offset) {
     // mv排行榜
-    Vue.http.get('http://linkorg.club:8091/top/mv', {
+    Vue.http.get('/Node/top/mv', {
       params: {
         'limit': limit,
         'offset': offset
@@ -543,7 +543,7 @@ export default {
   },
   resemble: function (mvid, reLevant) {
     // mv相似
-    Vue.http.get('http://linkorg.club:8091/simi/mv', {
+    Vue.http.get('/Node/simi/mv', {
       params: {
         'mvid': mvid
       },
@@ -559,7 +559,7 @@ export default {
   },
   commentMv: function (mvid, count, comment, hotComment) {
     // mv评论
-    Vue.http.get('http://linkorg.club:8091/comment/mv', {
+    Vue.http.get('/Node/comment/mv', {
       params: {
         'limit': count,
         'id': mvid
@@ -579,7 +579,7 @@ export default {
   },
   goodComment: function (id, cid, t, tpye) {
     // 评论点赞
-    Vue.http.get('http://linkorg.club:8091/comment/like', {
+    Vue.http.get('/Node/comment/like', {
       params: {
         'id': id,
         'cid': cid,
@@ -595,7 +595,7 @@ export default {
   },
   playMv: function (id) {
     // 播放MV
-    Vue.http.get('http://linkorg.club:8091/mv', {
+    Vue.http.get('/Node/mv', {
       params: {
         'mvid': id
       },
@@ -609,7 +609,7 @@ export default {
   },
   yunRec: function (data, p) {
     // 我的音乐云盘
-    Vue.http.get('http://linkorg.club:8091/user/cloud', {
+    Vue.http.get('/Node/user/cloud', {
       params: {
       },
       xhrFields: {
@@ -641,7 +641,7 @@ export default {
   },
   myFm: function (data, limit) {
     // 用户电台
-    Vue.http.get('http://linkorg.club:8091/dj/recommend', {
+    Vue.http.get('/Node/dj/recommend', {
       params: {
       },
       xhrFields: {
@@ -663,7 +663,7 @@ export default {
   },
   FMTabRecommend: function (data, limit, type, i) {
     // 电台 - 分类推荐
-    Vue.http.get('http://linkorg.club:8091/dj/recommend/type', {
+    Vue.http.get('/Node/dj/recommend/type', {
       params: {
         'type': type
       },
@@ -686,7 +686,7 @@ export default {
   },
   myShows: function (data, limit) {
     // 推荐节目
-    Vue.http.get('http://linkorg.club:8091/program/recommend', {
+    Vue.http.get('/Node/program/recommend', {
       params: {
       },
       xhrFields: {
@@ -708,7 +708,7 @@ export default {
   },
   myPored: function (data, limit) {
     // 独家放送
-    Vue.http.get('http://linkorg.club:8091/personalized/privatecontent', {
+    Vue.http.get('/Node/personalized/privatecontent', {
       params: {
       },
       xhrFields: {
@@ -730,7 +730,7 @@ export default {
   },
   FMTab: function (data, limit) {
     // 电台 - 分类
-    Vue.http.get('http://linkorg.club:8091/dj/catelist', {
+    Vue.http.get('/Node/dj/catelist', {
       params: {
       },
       xhrFields: {
@@ -750,7 +750,7 @@ export default {
   },
   myFmProgram: function (rid, data, offset) {
     // 电台节目
-    Vue.http.get('http://linkorg.club:8091/dj/program', {
+    Vue.http.get('/Node/dj/program', {
       params: {
         'rid': rid,
         'limit': 50,
@@ -777,7 +777,7 @@ export default {
   },
   myFmDetails: function (rid, data) {
     // 电台详情
-    Vue.http.get('http://linkorg.club:8091/dj/detail', {
+    Vue.http.get('/Node/dj/detail', {
       params: {
         'rid': rid
       },
@@ -798,7 +798,7 @@ export default {
   },
   getSingerAublm: function (id, limit, data, hot) {
     // 获取歌手专辑
-    Vue.http.get('http://linkorg.club:8091/artist/album', {
+    Vue.http.get('/Node/artist/album', {
       params: {
         'id': id,
         'limit': limit
@@ -827,7 +827,7 @@ export default {
   },
   plateOnShelf: function (p, offset, limit) {
     // 新碟上架
-    Vue.http.get('http://linkorg.club:8091/top/album', {
+    Vue.http.get('/Node/top/album', {
       params: {
         'offset': offset,
         'limit': limit
@@ -851,7 +851,7 @@ export default {
   },
   getAublmContent: function (id, data) {
     // 专辑内容
-    Vue.http.get('http://linkorg.club:8091/album', {
+    Vue.http.get('/Node/album', {
       params: {
         'id': id
       },
@@ -868,7 +868,7 @@ export default {
   },
   getSingerMv: function (id, data) {
     // 获取歌手MV
-    Vue.http.get('http://linkorg.club:8091/artist/mv', {
+    Vue.http.get('/Node/artist/mv', {
       params: {
         'id': id,
         'limit': 32
@@ -891,7 +891,7 @@ export default {
   },
   getSingerDetils: function (id, data) {
     // 获取歌手具体详情
-    Vue.http.get('http://linkorg.club:8091/artist/desc', {
+    Vue.http.get('/Node/artist/desc', {
       params: {
         'id': id
       },
@@ -908,7 +908,7 @@ export default {
   },
   getSingerSimi: function (id, data) {
     // 获取相似歌手
-    Vue.http.get('http://linkorg.club:8091/simi/artist', {
+    Vue.http.get('/Node/simi/artist', {
       params: {
         'id': id,
         'limit': 30
@@ -929,7 +929,7 @@ export default {
   },
   getSearchHot: function () {
     // 获取相似歌手
-    Vue.http.get('http://linkorg.club:8091/search/hot', {
+    Vue.http.get('/Node/search/hot', {
       params: {
       },
       xhrFields: {
